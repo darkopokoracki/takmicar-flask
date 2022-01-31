@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update</title>
+    <style>
+        .container {
+            width: 80%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        span {
+            color: red;
+        }
+
+        h1 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Update</h1>
+        <form action="/update/{{ takmicar.get_broj_prijave() }}" method="POST">
+            <p>
+                <label for="prijava">Broj Prijave</label>
+                <input type="text" name="prijava" value="{{ takmicar.get_broj_prijave() }}" readonly>
+                <span>{{ prijava_error }}</span>
+            </p>
+
+            <p>
+                <label for="ime_prezime">Ime i prezime</label>
+                <input type="text" name="ime_prezime" value="{{ takmicar.get_ime_prezime() }}">
+                <span>{{ ime_prezime_error }}</span>
+            </p>
+
+            <p>
+                <label for="email">Email</label>
+                <input type="email" name="email" value="{{ takmicar.get_email() }}">
+                <span>{{ email_error }}</span>
+            </p>
+
+            <p>
+                <label for="sifra">Sifra</label>
+                <input type="password" name="sifra" value="{{ takmicar.get_sifra() }}">
+                <span>{{ sifra_error }}</span>
+            </p>
+
+            <p>
+                <label for="potvrda">Potvrda lozinke</label>
+                <input type="password" name="potvrda">
+                <span>{{ potvrda_error }}</span>
+            </p>
+
+            <p>
+                <label for="informatika">Poeni informatika</label>
+                <input type="number" name="informatika" value="{{ takmicar.get_poeni_informatika() }}">
+                <span>{{ informatika_error }}</span>
+            </p>
+
+            <p>
+                <label for="matematika">Poeni matematika</label>
+                <input type="number" name="matematika" value="{{ takmicar.get_poeni_matematika() }}">
+                <span>{{ matematika_error }}</span>
+            </p>
+
+            <p>
+                <input type="submit" value="Update">
+            </p>
+        </form>
+    </div>
+</body>
+</html>

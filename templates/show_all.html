@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show All</title>
+    <style>
+        .container {
+            width: 80%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        span {
+            color: red;
+        }
+
+        h1 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Show All</h1>
+        <table border="1" style="border-collapse: collapse;">
+            <tr>
+                <th>ID</th>
+                <th>Broj prijave</th>
+                <th>Ime Prezime</th>
+                <th>Email</th>
+                <th>Sifra</th>
+                <th>Poeni informatika</th>
+                <th>Poeni matematika</th>
+                {% if 'prijava' in session %}
+                <th colspan="2">
+                    Opcije
+                </th>
+                {% endif %}
+            </tr>
+            {% for takmicar in takmicari %}
+            <tr>
+                <td>{{ takmicar.get_id() }}</td>
+                <td>{{ takmicar.get_broj_prijave() }}</td>
+                <td>{{ takmicar.get_ime_prezime() }}</td>
+                <td>{{ takmicar.get_email() }}</td>
+                <td>{{ takmicar.get_sifra() }}</td>
+                <td>{{ takmicar.get_poeni_informatika() }}</td>
+                <td>{{ takmicar.get_poeni_matematika() }}</td>
+                {% if 'prijava' in session %}
+                <td>
+                    <a href="/update/{{ takmicar.get_broj_prijave() }}">
+                        Update
+                    </a>
+                </td>
+                <td>
+                    <form action="/delete/{{ takmicar.get_broj_prijave() }}" method="POST">
+                        <input type="submit" value="delete">
+                    </form>
+                </td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>
